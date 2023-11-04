@@ -10,7 +10,6 @@
     <li><a href="#prereq">Pré-requisitos e como rodar a aplicação</a></li>
     <li><a href="#tec">Tecnologias utilizadas</a></li>
     <li><a href="#autor">Responsáveis</a></li>
-    <li><a href="#doc">Documentação</a></li>
 </ul>
 
 <h2 id="sobre">💻 Sobre</h2>
@@ -46,7 +45,7 @@ O produto consiste em um sistema de reserva de hotel, em que há dois usuário, 
     <li>Defina a API como projeto de inicialização</li>
     <li>Faça build em toda a solução</li>
    <li>Altere a string de conexão em appsettings.Development</li>
-    <li>Acesse o visual studio/ferramentas/gerenciador de pacote Nuget/console do gerenciador de pacote, com isso digite update-database<li>
+    <li>Acesse o visual studio/ferramentas/gerenciador de pacote Nuget/console do gerenciador de pacote, com isso digite update-database</li>
     <li>Click no botão de executar e selecione IIS Express (botão verde com icone parecido com do youtube)</li>
 </ol>
 
