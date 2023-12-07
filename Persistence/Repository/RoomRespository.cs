@@ -34,7 +34,7 @@ namespace Persistence.Repository
         {
             try
             {
-                IQueryable<Room> query = _context.DB_Room
+                IQueryable<Room> query = _context.DB_Room.Include(x => x.Hotel)
                     .Where(x => (id == null || x.ID == id) &&
                                 (roomNumber == null || x.RoomNumber == roomNumber) &&
                                 (floor == null || x.Floor == floor) &&
@@ -83,6 +83,26 @@ namespace Persistence.Repository
                 throw new Exception(MsgErro.ErroCadastroBancoDados);
             }
         }
+
+        public async Task<RoomReserve> ReserveRoom(int idRoom, int userID, DateTime dtInit, DateTime dtEnd)
+        {
+            try
+            {
+                RoomReserve roomReserve = new RoomReserve
+                {
+                    RoomID = idRoom,
+                    UserID = userID,
+                    DtStart = dtInit,
+                    DtEnd = dtEnd
+                };
+                _geralRepository.Add(roomReserve);
+                if (!await _geralRepository.SaveChangesAsyncs()) throw new Exception("");
+                return roomReserve;
+            }
+            catch (Exception)
+            {
+                throw new Exception(MsgErro.ErroCadastroBancoDados);
+            }
+        }
     }
-    
 }

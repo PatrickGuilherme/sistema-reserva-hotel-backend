@@ -68,5 +68,16 @@ namespace Application.Service
             return _mapper.Map<RoomViewModel>(dataReturn);
         }
 
+        public async Task<RoomReserveViewModel> ReserveRoom(int idRoom, int userID, DateTime dtInit, DateTime dtEnd)
+        {
+            var roomExist = await _roomRepository.GET_Room(idRoom, null, null, null, false);
+            if(roomExist == null) throw new Exception("Quarto Selecionado não está disponível");
+            if(userID <= 0) throw new Exception("Usuário Selecionado não está disponível");
+            if(dtInit > dtEnd) throw new Exception("Selecione a data de inicio menor que a data de fim da reserva");
+            var dataReturn = await _roomRepository.ReserveRoom(idRoom, userID,dtInit,dtEnd);
+
+            return _mapper.Map<RoomReserveViewModel>(dataReturn);
+        }
+
     }
 }

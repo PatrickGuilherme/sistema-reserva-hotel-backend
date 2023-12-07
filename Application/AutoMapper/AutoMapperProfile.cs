@@ -18,7 +18,7 @@ namespace Application.AutoMapper
             CreateMap<Hotel, HotelViewModel>().ReverseMap();
             CreateMap<Room, RoomViewModel>().ReverseMap();
             CreateMap<User, UserViewModel>().ReverseMap();
-
+            CreateMap<RoomReserve, RoomReserveViewModel>().ReverseMap();
         }
     }
 }

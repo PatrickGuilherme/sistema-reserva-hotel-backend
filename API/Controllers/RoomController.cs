@@ -1,4 +1,5 @@
-﻿using Application.IService;
+﻿using Application.Filter;
+using Application.IService;
 using Application.ViewModel;
 using Domain.MsgErro;
 using Microsoft.AspNetCore.Http;
@@ -65,8 +66,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("update-status-room/{idRoom}")]
-        public async Task<IActionResult> update(int idRoom)
+        [HttpGet("update-status-room/{idRoom?}")]
+        public async Task<IActionResult> update(int? idRoom)
         {
             if (idRoom == null) return this.StatusCode(StatusCodes.Status400BadRequest, MsgErro.ErroCadastroParametros);
             try
@@ -79,5 +80,20 @@ namespace API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, erro.Message);
             }
         }
+
+        [HttpPost("agendar-quarto")]
+        public async Task<IActionResult> ReserveRoom([FromBody] RoomReserveDto RoomReserveDto)
+        {
+            if (RoomReserveDto == null) return this.StatusCode(StatusCodes.Status400BadRequest, MsgErro.ErroCadastroParametros);
+            if(RoomReserveDto.DtInit == RoomReserveDto.DtEnd) return this.StatusCode(StatusCodes.Status400BadRequest, "Data de inicio e fim devem ser diferentes");
+            try { 
+                var respostaREQ = await _roomService.ReserveRoom(RoomReserveDto.RoomID, RoomReserveDto.UserID, RoomReserveDto.DtInit, RoomReserveDto.DtEnd);
+                return Ok(respostaREQ);
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, erro.Message);
+            }
+        } 
     }
 }

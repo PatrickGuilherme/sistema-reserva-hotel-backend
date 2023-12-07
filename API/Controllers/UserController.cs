@@ -20,8 +20,6 @@ namespace API.Controllers
             _userService = userService;
         }
 
-
-        // POST api/<UserController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] UserViewModel userView)
         {

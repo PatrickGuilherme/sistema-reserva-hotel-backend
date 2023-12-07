@@ -13,6 +13,6 @@ namespace Application.IService
         public Task<IEnumerable<RoomViewModel>> GET_Room();
         public Task<RoomViewModel> SET_Room(RoomViewModel roomViewModel);
         public Task<RoomViewModel> Modify_Status_Room(int idRoom);
-
+        public Task<RoomReserveViewModel> ReserveRoom(int idRoom, int userID, DateTime dtInit, DateTime dtEnd);
     }
 }

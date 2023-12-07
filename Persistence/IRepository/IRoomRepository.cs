@@ -13,6 +13,6 @@ namespace Persistence.IRepository
    
         public Task<Room> SET_Room(int roomNumber, int floor, int hotelID);
         public Task<Room> Modify_Status_Room(int idRoom);
-
+        public Task<RoomReserve> ReserveRoom(int idRoom, int userID, DateTime dtInit, DateTime dtEnd);
     }
 }
