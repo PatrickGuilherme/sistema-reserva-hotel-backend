@@ -23,6 +23,12 @@ namespace Persistence.Repository
             _context.Add(Entity);
         }
 
+        public EntityEntry<T> Delete<T>(T Entity) where T : class
+        {
+            var entry = _context.Remove(Entity);
+            return entry;
+        }
+
         public EntityEntry<T> Update<T>(T Entity) where T : class
         {
            return _context.Update(Entity);

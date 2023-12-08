@@ -94,6 +94,20 @@ namespace API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, erro.Message);
             }
-        } 
+        }
+        
+        [HttpDelete("excluir-quarto/{roomId}")]
+        public async Task<IActionResult> DeleteRoom(int roomId)
+        {
+            try
+            {
+                var respostaREQ = await _roomService.DeleteRoom(roomId);
+                return Ok(respostaREQ);
+            }
+            catch (Exception erro)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, erro.Message);
+            }
+        }
     }
 }
