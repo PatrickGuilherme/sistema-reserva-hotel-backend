@@ -46,6 +46,12 @@ namespace Application.Service
             return _mapper.Map<IEnumerable<RoomViewModel>>(dataReturn);
         }
 
+        public async Task<bool> DeleteRoom(int roomId)
+        {
+            if (roomId <= 0) throw new Exception("Selecione um quarto para excluir");
+            return await _roomRepository.DeleteRoom(roomId);
+        }
+
         public async Task<RoomViewModel> SET_Room(RoomViewModel roomViewModel)
         {
             if (roomViewModel == null) throw new Exception(MsgErro.ErroCadastroBancoDados);

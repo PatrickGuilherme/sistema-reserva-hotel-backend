@@ -9,6 +9,8 @@ namespace Application.IService
 {
     public interface IRoomService
     {
+
+        public Task<bool> DeleteRoom(int roomId);
         public Task<IEnumerable<RoomViewModel>> GET_RoomAll(int hotelId);
         public Task<IEnumerable<RoomViewModel>> GET_Room();
         public Task<RoomViewModel> SET_Room(RoomViewModel roomViewModel);
