@@ -104,5 +104,23 @@ namespace Persistence.Repository
                 throw new Exception(MsgErro.ErroCadastroBancoDados);
             }
         }
+
+        public async Task<bool> DeleteRoom(int roomId)
+        {
+            try
+            {
+                var retorno = await this.GET_Room(roomId, null, null, null, null);
+                if (retorno == null || retorno.Count() <= 0) throw new Exception("Registro não encontrado, talvez já tenha sido excluido");
+
+                _geralRepository.Delete(retorno);
+                if (!await _geralRepository.SaveChangesAsyncs()) throw new Exception("");
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(MsgErro.ErroCadastroBancoDados);
+                return true;
+            }
+        }
     }
 }

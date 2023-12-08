@@ -12,5 +12,6 @@ namespace Persistence.IRepository
         void Add<T>(T Entity) where T : class;
         EntityEntry<T> Update<T>(T Entity) where T : class;
         Task<bool> SaveChangesAsyncs();
+        EntityEntry<T> Delete<T>(T Entity) where T : class;
     }
 }
